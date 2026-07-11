@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Logs / cache
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.ipynb_checkpoints/
+
+# AI / model artifacts
+*.pth
+*.pt
+*.bin
+*.safetensors
+checkpoint-*/
+llama-coder-lora/
+outputs/
+runs/
+wandb/
+
+# Local data
+data/train.jsonl
+data/*.jsonl
+*.sqlite3
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Angular
+node_modules/
+.angular/
+coverage/
+npm-debug.log*
+yarn-error.log*
+dist/
