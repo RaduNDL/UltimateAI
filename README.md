@@ -12,7 +12,7 @@ UltimateAI is a local AI coding assistant project with:
 ## Features
 
 - Local `/chat` API powered by a fine-tuned LLM
-- Lightweight LoRA fine-tuning flow for consumer GPUs (e.g., RTX 3070 Ti 8GB)
+- Lightweight LoRA fine-tuning flow for consumer GPUs (e.g., laptop RTX 3070 Ti 8GB)
 - Dataset generator for coding instruction data
 - Frontend chat interface (Angular)
 - Fast “turbo” training profile for quick iteration
