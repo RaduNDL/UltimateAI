@@ -1,0 +1,39 @@
+<div class="auth-bg-pattern"></div>
+<div class="auth-glow"></div>
+
+<div class="auth-wrapper">
+  <div class="auth-box">
+    <div class="auth-header">
+      <h2>Create Account</h2>
+      <p>Initialize your development environment.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input type="text" name="name" [(ngModel)]="name" required placeholder="Developer Name">
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="username" [(ngModel)]="username" required placeholder="Username (letters, numbers, _)" autocomplete="username">
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" [(ngModel)]="email" required placeholder="Email address" autocomplete="email">
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" [(ngModel)]="password" required placeholder="Password (minimum 8 characters)" autocomplete="new-password">
+      </div>
+
+      <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="btn-submit" [disabled]="loading">
+        {{ loading ? 'Configuring...' : 'Initialize' }}
+      </button>
+    </form>
+
+    <div class="auth-switch">
+      Already have clearance? <a routerLink="/login">Sign In</a>
+    </div>
+  </div>
+</div>

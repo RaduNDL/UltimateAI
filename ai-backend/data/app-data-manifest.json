@@ -1,0 +1,12 @@
+{
+  "language": "English only",
+  "seed_examples": 36,
+  "codefeedback_examples": 160,
+  "magicoder_examples": 80,
+  "unique_examples": 276,
+  "train_examples": 235,
+  "eval_examples": 41,
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "max_length": 512,
+  "seed": 42
+}

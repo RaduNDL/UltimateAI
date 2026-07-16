@@ -1,0 +1,8 @@
+{
+  "base_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "examples": 610,
+  "max_length": 384,
+  "max_steps": 40,
+  "time_limit_minutes": 25,
+  "training_loss": 0.7387723445892334
+}

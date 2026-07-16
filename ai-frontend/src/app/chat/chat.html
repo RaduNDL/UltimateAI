@@ -1,16 +1,102 @@
-<div class="chat-wrapper">
-    <div class="chat-box" #chatMessages>
-        <div *ngFor="let msg of messages" class="message-row" [ngClass]="msg.role">
-            <div class="message-bubble">
-                {{ msg.text }}
-            </div>
+<div class="chat-bg-pattern"></div>
+<div class="chat-glow"></div>
+
+<div class="chat-container">
+  <header class="chat-header">
+    <div class="header-left">
+      <div>
+        <h2>UltimateAI Coding Mentor</h2>
+        <p class="model-label">{{ modelLabel }}</p>
+      </div>
+      <div class="status-indicator" [class.offline]="!backendOnline">
+        <div class="status-dot"></div>
+        <span class="status-text">{{ backendOnline ? 'Online' : 'Offline' }}</span>
+      </div>
+    </div>
+    <button class="btn-clear" [disabled]="loading" (click)="clearChat()">Clear conversation</button>
+  </header>
+
+  <div class="chat-scroll-area" #scrollWrap>
+    <div
+      class="message-wrapper"
+      *ngFor="let message of messages; trackBy: trackByIndex"
+      [ngClass]="{'user-msg': message.role === 'user'}"
+    >
+      <div class="avatar" [ngClass]="message.role === 'user' ? 'avatar-user' : 'avatar-ai'">
+        <span *ngIf="message.role === 'user'">U</span>
+        <span *ngIf="message.role === 'assistant'">AI</span>
+      </div>
+      <div class="message-bubble" [ngClass]="message.role === 'user' ? 'user-bubble' : 'ai-bubble'">
+        <div *ngIf="message.role === 'assistant'" class="ai-message-text" [innerHTML]="renderMessage(message.content)"></div>
+        <span *ngIf="message.role === 'user'" class="user-message-text">{{ message.content }}</span>
+        <div class="message-meta" *ngIf="message.mode">{{ message.mode }}</div>
+        <div class="sources" *ngIf="message.sources?.length">
+          <span>Project context used:</span>
+          <code *ngFor="let source of message.sources">{{ source.path }}:{{ source.start_line }}</code>
         </div>
+      </div>
     </div>
-    
-    <div class="input-area">
-        <input type="text" [(ngModel)]="userInput" (keypress)="handleKeyPress($event)" placeholder="Enter prompt...">
-        <button (click)="sendMessage()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+
+    <div class="message-wrapper" *ngIf="loading">
+      <div class="avatar avatar-ai">AI</div>
+      <div class="message-bubble ai-bubble typing-bubble">
+        <div class="typing-indicator" aria-label="Assistant is thinking">
+          <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-dock">
+    <div class="input-wrapper">
+      <div class="error-text" *ngIf="error">{{ error }}</div>
+      <div class="composer-toolbar">
+        <button
+          class="options-trigger"
+          type="button"
+          [class.is-open]="showChatOptions"
+          [disabled]="loading"
+          (click)="toggleChatOptions()"
+          aria-label="Open chat options"
+        >
+          <span class="options-icon" aria-hidden="true">⚙</span>
+          Chat options
+          <span class="options-summary" *ngIf="selectedProject">{{ selectedProject }}</span>
         </button>
+        <span class="route-label" *ngIf="activeRoute">{{ activeRoute }} mode</span>
+      </div>
+      <div class="chat-options" *ngIf="showChatOptions">
+        <label class="option-field option-project">
+          <span>Project</span>
+          <select [(ngModel)]="selectedProject" [disabled]="loading">
+            <option value="">No project selected</option>
+            <option *ngFor="let project of projects" [value]="project">{{ project }}</option>
+          </select>
+        </label>
+        <label class="context-toggle">
+          <input type="checkbox" [(ngModel)]="useProjectContext" [disabled]="loading">
+          <span>Use selected project files as context</span>
+        </label>
+        <label class="option-field">
+          <span>Answer style</span>
+          <select [(ngModel)]="settings.response_mode" [disabled]="loading">
+            <option value="auto">Automatic</option>
+            <option value="fast">Quick</option>
+            <option value="detailed">Detailed</option>
+          </select>
+        </label>
+      </div>
+      <div class="input-box">
+        <textarea
+          [(ngModel)]="prompt"
+          (keydown.enter)="onEnter($event)"
+          (input)="onInput($event)"
+          placeholder="Describe the error, paste code, or explain what you want to build... (Shift+Enter for a new line)"
+          rows="1"
+        ></textarea>
+        <button class="btn-stop" *ngIf="loading" (click)="abortGeneration()">Stop</button>
+        <button class="btn-send" *ngIf="!loading" [disabled]="!prompt.trim()" (click)="send()" aria-label="Send message">&#10148;</button>
+      </div>
     </div>
+  </div>
 </div>

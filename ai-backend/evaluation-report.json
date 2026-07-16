@@ -1,0 +1,65 @@
+[
+  {
+    "name": "instant-greeting",
+    "response": "Salut! Sunt UltimateAI, asistentul tau pentru programare. Cu ce lucram astazi?",
+    "mode": "instant",
+    "max_new_tokens": 0,
+    "sources": []
+  },
+  {
+    "name": "python-debugging",
+    "response": "The error `TypeError: NoneType is not subscriptable` occurs in Python when you try to access an element of a variable that is `None`. This means that the variable has not been assigned a value yet, or its value has been explicitly set to `None`.\n\nHere's an example of what this error looks like:\n\n```python\n# Incorrect usage\nmy_list = None\nprint(my_list[0])  # Raises TypeError: NoneType is not subscriptable\n```\n\nTo fix this error, you need to ensure that the variable you're trying to access is not `None` before you attempt to use it. Here's how you can modify the code to avoid this error:\n\n```python\n# Correct usage\nmy_list = [1, 2, 3]\nif my_list is not None:\n    print(my_list[0])  # Output: 1\nelse:\n    print(\"List is None\")\n```\n\nIn this example, we first check if `my_list` is not `None` using the `is not` operator. If it's not `None`, we proceed to access the first element of the list. If it is `None`, we handle the situation by printing a message instead of attempting to access the element.\n\nBy following these best practices, you can prevent `TypeError: NoneType is not subscriptable` errors in your Python code.",
+    "mode": "programming",
+    "max_new_tokens": 384,
+    "sources": [
+      {
+        "path": "ai-backend/evaluate_model.py",
+        "start_line": 1,
+        "end_line": 68
+      },
+      {
+        "path": "ai-backend/prepare_data.py",
+        "start_line": 1,
+        "end_line": 73
+      },
+      {
+        "path": "ai-backend/prepare_data.py",
+        "start_line": 74,
+        "end_line": 125
+      },
+      {
+        "path": "ai-backend/app.py",
+        "start_line": 175,
+        "end_line": 244
+      }
+    ]
+  },
+  {
+    "name": "project-context",
+    "response": "În acest proiect, endpointul chat este definit în fișierul `app.py` și îl primește două date:\n\n1. Prompt: Acesta este textul întors de utilizator care va fi procesat de modelul AI.\n2. Response Mode: Este o modalitate care determină cum se va procesa răspunsul AI. Poate fi \"auto\", \"detailed\" sau \"auto-detailed\".\n\nÎn fișierul `app.py`, endpointul chat este definit în funcție de tipul de request:\n\n```python\n@app.route('/chat', methods=['POST'])\ndef chat():\n    # Încodarea datelor primite din request\n    data = request.get_json()\n    \n    # Verificarea formatului datelor\n    if 'prompt' not in data or 'response_mode' not in data:\n        return jsonify({'error': 'Invalid request'}), 400\n    \n    prompt = data['prompt']\n    response_mode = data['response_mode']\n    \n    # Procesarea datelor și generarea răspunsului\n    response = process_request(prompt, response_mode)\n    \n    # Returnarea răspunsului\n    return jsonify(response)\n\ndef process_request(prompt, response_mode):\n    # Implementarea logicii de procesare a datelor\n    # ...\n    pass\n```\n\nÎn acest fișier, `process_request` este o funcție care procesează promptul și response_mode și întoarce răspunsul AI.",
+    "mode": "detailed",
+    "max_new_tokens": 512,
+    "sources": [
+      {
+        "path": "ai-backend/evaluate_model.py",
+        "start_line": 1,
+        "end_line": 68
+      },
+      {
+        "path": "ai-backend/prepare_data.py",
+        "start_line": 74,
+        "end_line": 125
+      },
+      {
+        "path": "ai-backend/app.py",
+        "start_line": 175,
+        "end_line": 244
+      },
+      {
+        "path": "ai-backend/prepare_data.py",
+        "start_line": 1,
+        "end_line": 73
+      }
+    ]
+  }
+]

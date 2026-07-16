@@ -1,25 +1,53 @@
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" routerLink="/" (click)="closeMenu()">UltimateAI</a>
+<div class="app-layout">
+  
+  <aside class="sidebar">
+    <div class="brand-header">
+      <div class="logo-box">LC</div>
+      <a routerLink="/" class="brand-name">LogicCore</a>
+    </div>
 
-    <button class="menu-btn" (click)="toggleMenu()" aria-label="Toggle menu">
-      ☰
-    </button>
+    <div class="sidebar-scroll">
+      <div class="nav-section">
+        <span class="nav-label">Platform</span>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+          <span class="icon">📊</span> Dashboard
+        </a>
+        <a routerLink="/chat" routerLinkActive="active" class="nav-item">
+          <span class="icon">🤖</span> AI Mentor
+        </a>
+      </div>
 
-    <ul class="nav-links" [class.open]="isMenuOpen">
-      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a></li>
-      <li><a routerLink="/chat" routerLinkActive="active" (click)="closeMenu()">Chat</a></li>
-      <li><a routerLink="/#features" (click)="closeMenu()">Features</a></li>
-      <li><a routerLink="/#tech" (click)="closeMenu()">Tech</a></li>
-      <li><a href="https://github.com/RaduNDL/UltimateAI" target="_blank" rel="noopener">GitHub</a></li>
-    </ul>
-  </div>
-</nav>
+      <div class="nav-section">
+        <span class="nav-label">Learning Resources</span>
+        <a href="javascript:void(0)" class="nav-item disabled">
+          <span class="icon">📚</span> Course Modules
+        </a>
+        <a href="javascript:void(0)" class="nav-item disabled">
+          <span class="icon">💻</span> Code Sandbox
+        </a>
+        <a href="javascript:void(0)" class="nav-item disabled">
+          <span class="icon">📝</span> Assessments
+        </a>
+        <a href="javascript:void(0)" class="nav-item disabled">
+          <span class="icon">🏆</span> Leaderboards
+        </a>
+      </div>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="sidebar-footer">
+      <ng-container *ngIf="auth.user as user; else signedOut">
+        <div class="signed-in-user">Signed in as {{ user.display_name }}</div>
+        <button type="button" class="btn-auth btn-login" (click)="signOut()">Sign Out</button>
+      </ng-container>
+      <ng-template #signedOut>
+        <a routerLink="/login" class="btn-auth btn-login">Sign In</a>
+        <a routerLink="/register" class="btn-auth btn-register">Create Account</a>
+      </ng-template>
+    </div>
+  </aside>
 
-<footer class="footer">
-  <div class="container">
-    <p>© 2026 UltimateAI — Built by RaduNDL</p>
-  </div>
-</footer>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

@@ -1,0 +1,31 @@
+<div class="auth-bg-pattern"></div>
+<div class="auth-glow"></div>
+
+<div class="auth-wrapper">
+  <div class="auth-box">
+    <div class="auth-header">
+      <h2>Welcome Back</h2>
+      <p>Enter your credentials to access the terminal.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input type="email" name="email" [(ngModel)]="email" required placeholder="Email address" autocomplete="email">
+      </div>
+
+      <div class="input-group">
+        <input type="password" name="password" [(ngModel)]="password" required placeholder="Password" autocomplete="current-password">
+      </div>
+
+      <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="btn-submit" [disabled]="loading">
+        {{ loading ? 'Authenticating...' : 'Sign In' }}
+      </button>
+    </form>
+
+    <div class="auth-switch">
+      Don't have an account? <a routerLink="/register">Initialize one</a>
+    </div>
+  </div>
+</div>

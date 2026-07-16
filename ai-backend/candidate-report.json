@@ -1,0 +1,56 @@
+{
+  "passed": 6,
+  "total": 6,
+  "minimum_passes": 5,
+  "approved": true,
+  "cases": [
+    {
+      "name": "english-greeting",
+      "passed": true,
+      "problems": [],
+      "mode": "instant",
+      "sources": [],
+      "response": "Hello! I am UltimateAI, your English-only software engineering assistant. What are you building?"
+    },
+    {
+      "name": "sql-injection",
+      "passed": true,
+      "problems": [],
+      "mode": "programming",
+      "sources": [],
+      "response": "Parameterized SQL queries are designed to prevent SQL injection by separating the SQL query from the data being used to execute it. This is achieved through the use of prepared statements, which allow for the input values to be treated as data rather than executable commands.\n\nHere's an example of how this works:\n\n```python\n# Using Python with sqlite3 library\nimport sqlite3\n\n# Connect to database\nconn = sqlite3.connect('my_database.db')\ncursor = conn.cursor()\n\n# Define parameters for the query\nparam1 = 'value1'\nparam2 = 'value2'\n\n# Prepare the statement\nstmt = \"SELECT * FROM my_table WHERE column1 = ? AND column2 = ?\"\n\n# Execute the statement with named placeholders\ncursor.execute(stmt, (param1, param2))\n\n# Fetch"
+    },
+    {
+      "name": "ecommerce-schema",
+      "passed": true,
+      "problems": [],
+      "mode": "programming",
+      "sources": [],
+      "response": "The primary goal of designing the core database tables for an online store is to to efficiently store and manage data related to products, customers, orders, and transactions. The following steps outline the key components and relationships needed:\n\n1. **Products Table**: Stores information about each product available in the store.\n   - `product_id` (Primary Key)\n   - `name`\n   - `description`\n   - `price`\n   - `stock`\n\n2. **Customers Table**: Stores customer information such as name, email, address, etc.\n   - `customer_id` (Primary Key)\n   - `first_name`\n   - `last_name`\n   - `email`\n   - `address`\n   - `phone_number`\n\n3. **Orders Table**: Stores order information including order details, status, and payment method.\n   - `order_id` (Primary Key)\n   - `customer_id` (Foreign Key referencing Customers table)\n   - `status` (e.g., 'pending', 'shipped', 'delivered')\n   - `total_amount`\n   - `payment_method` (e.g.,"
+    },
+    {
+      "name": "fastapi-cors",
+      "passed": true,
+      "problems": [],
+      "mode": "programming",
+      "sources": [],
+      "response": "To resolve the issue where your Angular application cannot call a FastAPI server due to Cross-Origin Resource Sharing (CORS) restrictions, you need to ensure that both your Angular frontend and FastAPI backend are correctly configured for CORS.\n\n### Steps to Check:\n\n1. **Check CORS Headers on FastAPI Server:**\n   Ensure that your FastAPI server is sending the appropriate CORS headers. This can be done by adding the following decorators at the top of your FastAPI routes:\n   ```python\n   from fastapi import FastAPI\n\n   app = FastAPI()\n\n   @app.get(\"/items\")\n   def read_items():\n       return {\"item\": \"Hello World\"}\n   \n   @app.get(\"/items/{item_id}\")\n   def read_item(item_id: int):\n       return {\"item_id\": item"
+    },
+    {
+      "name": "typescript-undefined",
+      "passed": true,
+      "problems": [],
+      "mode": "programming",
+      "sources": [],
+      "response": "The TypeScript compiler is indicating that an object might be `undefined`. This can happen if the object was not initialized before being used.\n\n### Solution:\nTo resolve this issue, ensure that the object is properly initialized before it is accessed. Here's how you can do it:\n\n```typescript\n// Example: Initialize the object before using it\nconst myObject = { key1: 'value1', key2: 'value2' };\n\nconsole.log(myObject.key1); // Safe to use because myObject is defined\n```\n\n### Explanation:\n- **Initialization**: The object must be explicitly created with properties before they are referenced.\n- **Safety Check**: By checking for `undefined`, at runtime, we prevent potential errors when accessing uninitialized objects.\n\nThis approach ensures that your application does not attempt to access"
+    },
+    {
+      "name": "project-context",
+      "passed": true,
+      "problems": [],
+      "mode": "general",
+      "sources": [],
+      "response": "To determine which endpoint receives chat prompts in your project, you should look into the codebase where the chat functionality is implemented. Typically, endpoints related to chat might be found under the `/api` directory or similar paths within your application's structure.\n\nHere\u2019s a general approach:\n\n1. **Identify the API Endpoints**: Look through your `routes.py`, `app.py`, or equivalent file that handles HTTP requests.\n2. **Search for Chat Related Functions**: Search for functions named `chat`, `conversation`, or any other term that indicates a chat interaction.\n3. **Check Request Handling**: Ensure that the function handling the request includes parameters like `prompt` or `message`.\n\nIf you have access to the relevant part of the code, please share it so I can assist further. Otherwise,"
+    }
+  ]
+}

@@ -1,42 +1,83 @@
-<section class="hero">
-  <div class="container hero-content">
-    <h1>Build. Fine-tune. Chat.<br />Your own local coding AI.</h1>
-    <p>
-      UltimateAI is a full-stack local AI assistant powered by TinyLlama + LoRA,
-      FastAPI backend, and Angular frontend.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" routerLink="/chat">Open Chat</a>
-      <a class="btn btn-secondary" href="https://github.com/RaduNDL/UltimateAI" target="_blank" rel="noopener">View Repository</a>
+<div class="dashboard-header">
+  <h1>Welcome to LogicCore, Developer.</h1>
+  <p>Track your progress, access your materials, or start a session with the AI Mentor.</p>
+</div>
+
+<div class="grid-container">
+  
+  <div class="left-col">
+    <div class="panel" style="margin-bottom: 24px;">
+      <div class="panel-title">Current Module</div>
+      <div class="continue-card">
+        <div class="course-info">
+          <h3>Advanced Data Structures in Python</h3>
+          <p>Module 4: Binary Search Trees & Graph Traversal</p>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px;">
+            <span>Progress</span>
+            <span>35%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+        <button class="btn-resume">Resume Learning</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Latest Platform Materials</div>
+      <div class="material-list">
+        <div class="material-item">
+          <div class="mat-icon">🐍</div>
+          <div class="mat-details">
+            <h4>Python Asynchronous Programming</h4>
+            <p>Video Lecture • 45 mins read</p>
+          </div>
+        </div>
+        <div class="material-item">
+          <div class="mat-icon">⚙️</div>
+          <div class="mat-details">
+            <h4>Memory Management in C#</h4>
+            <p>Interactive Sandbox • Medium Difficulty</p>
+          </div>
+        </div>
+        <div class="material-item">
+          <div class="mat-icon">📊</div>
+          <div class="mat-details">
+            <h4>Big O Notation Practice Quiz</h4>
+            <p>Assessment • 20 Questions</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<section id="features" class="section">
-  <div class="container">
-    <h2>Features</h2>
-    <div class="grid">
-      <article class="card">
-        <h3>Local AI API</h3>
-        <p>FastAPI endpoint for low-latency local coding assistance.</p>
-      </article>
-      <article class="card">
-        <h3>LoRA Fine-tuning</h3>
-        <p>Efficient training flow optimized for 8GB VRAM GPUs.</p>
-      </article>
-      <article class="card">
-        <h3>Angular Frontend</h3>
-        <p>Modern interface with clean chat UX and easy customization.</p>
-      </article>
+  <div class="right-col">
+    <div class="panel ai-promo" style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Stuck on a bug?</h3>
+      <p style="font-size: 0.9rem;">The AI Neural Mentor is online and ready to analyze your code context.</p>
+      <a routerLink="/chat" class="ai-btn">Initialize Mentor</a>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Your Stats</div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+          <span style="color: var(--text-secondary); font-size: 0.9rem;">Global Rank</span>
+          <span style="font-weight: 700;">Gold II</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+          <span style="color: var(--text-secondary); font-size: 0.9rem;">Problems Solved</span>
+          <span style="font-weight: 700;">42</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: var(--text-secondary); font-size: 0.9rem;">Current Streak</span>
+          <span style="font-weight: 700; color: #10b981;">4 Days 🔥</span>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<section id="tech" class="section alt">
-  <div class="container">
-    <h2>Tech Stack</h2>
-    <p class="stack">
-      Python • FastAPI • Transformers • PEFT • BitsAndBytes • Angular • TypeScript
-    </p>
-  </div>
-</section>
+</div>
